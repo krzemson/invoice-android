@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">invoices</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello fragment</string>
+    <string name="s_pref_file">com.example.invoices.sh_preference_file</string>
+    <string name="s_pref_login_status">com.example.invoices.sh_preference_login_status</string>
+    <string name="s_pref_login_message">com.example.invoices.sh_preference_message</string>
+    <string name="s_pref_id">sh_preference_id</string>
+    <string name="s_pref_username">sh_preference_username</string>
+    <string name="s_pref_name">sh_preference_name</string>
+    <string name="s_pref_surname">sh_preference_surname</string>
+    <string name="s_pref_email">sh_preference_email</string>
+    <string name="s_pref_jwt">sh_preference_jwt</string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+
+</resources>
