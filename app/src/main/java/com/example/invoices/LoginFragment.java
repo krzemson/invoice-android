@@ -96,7 +96,6 @@ public class LoginFragment extends Fragment {
                 public void onResponse(Call<User> call, Response<User> response) {
                     //displaying the message from the response as toast
 
-                    System.out.println(response.body());
                     if (response.code() == 200){
                         MainActivity.appPreference.setLoginStatus(true); // set login status in sharedPreference
                         loginFromActivityListener.login(
@@ -107,7 +106,6 @@ public class LoginFragment extends Fragment {
                                 response.body().getSurname(),
                                 response.body().getEmail(),
                                 response.body().getJwt());
-                        MainActivity.appPreference.showToast(response.body().getMessage());
                     } else if (response.code() == 401){
                         MainActivity.appPreference.showToast("Błędne dane logowania");
                         emailInput.setText("");

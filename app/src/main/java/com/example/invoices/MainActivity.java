@@ -2,6 +2,7 @@ package com.example.invoices;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements MyInterface {
         final TextView message = findViewById(R.id.message);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.80/api/user/")
+                .baseUrl("http://192.168.0.80/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
@@ -93,10 +94,14 @@ public class MainActivity extends AppCompatActivity implements MyInterface {
         appPreference.setDisplayEmail(email);
         appPreference.setDisplayJwt(jwt);
 
-        getSupportFragmentManager()
+        /*getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, new ProfileFragment())
-                .commit();
+                .commit();*/
+
+        Intent MainIntent = new Intent(MainActivity.this, DashboardActivity.class);
+        startActivity(MainIntent);
+        MainActivity.appPreference.showToast("Pomyślnie zalogowano !");
     }
     @Override
     public void logout() {

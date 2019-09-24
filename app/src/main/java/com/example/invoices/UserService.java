@@ -15,7 +15,10 @@ public interface UserService {
     @Headers({
             "Content-Type:application/json"
     })
-    @POST("login.php")
+    @POST("user/login.php")
     Call<User> login(@Body Map<String, String> login);
+
+    @POST("invoice/read.php")
+    Call<Invoice> invoices(@Body Map<String, String> invoices);
 
 }

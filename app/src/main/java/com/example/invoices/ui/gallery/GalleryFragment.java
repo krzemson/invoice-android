@@ -12,7 +12,22 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.invoices.Invoice;
+import com.example.invoices.Invoices;
+import com.example.invoices.MainActivity;
 import com.example.invoices.R;
+import com.example.invoices.User;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.sql.Wrapper;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class GalleryFragment extends Fragment {
 
@@ -30,6 +45,40 @@ public class GalleryFragment extends Fragment {
                 textView.setText(s);
             }
         });
+
+
+        Map<String, String> params = new HashMap<>();
+        params.put("jwt", MainActivity.appPreference.getDisplayJwt());
+
+        Call<Invoice> call = MainActivity.service.invoices(params);
+
+//calling the api
+        call.enqueue(new Callback<Invoice>() {
+            @Override
+            public void onResponse(Call<Invoice> call, Response<Invoice> response) {
+                //displaying the message from the response as toast
+                if (response.code() == 200){
+
+                    for (Invoices inv : response.body().getFaktury()){
+
+                        System.out.println(inv.getNrFaktury());
+
+                    }
+                    
+                    System.out.println(response.body().getFaktury());
+
+                    MainActivity.appPreference.showToast("Granted");
+                } else if (response.code() == 401){
+                    MainActivity.appPreference.showToast("Access Denied");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Invoice> call, Throwable t) {
+                System.out.println(t.getMessage());
+            }
+        });
+
         return root;
     }
 }
