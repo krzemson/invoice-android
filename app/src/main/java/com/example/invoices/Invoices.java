@@ -13,6 +13,12 @@ public class Invoices {
     @SerializedName("nr_faktury")
     @Expose
     private String nrFaktury;
+    @SerializedName("klient")
+    @Expose
+    private String klient;
+    @SerializedName("vat")
+    @Expose
+    private String vat;
     @SerializedName("wartosc_brutto")
     @Expose
     private String wartoscBrutto;
@@ -29,6 +35,22 @@ public class Invoices {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getKlient() {
+        return klient;
+    }
+
+    public void setKlient(String klient) {
+        this.nrFaktury = klient;
+    }
+
+    public String getVat() {
+        return vat;
+    }
+
+    public void setVat(String vat) {
+        this.nrFaktury = vat;
     }
 
     public String getNrFaktury() {
