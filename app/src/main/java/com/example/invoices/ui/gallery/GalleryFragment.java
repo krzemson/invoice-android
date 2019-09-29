@@ -1,13 +1,18 @@
 package com.example.invoices.ui.gallery;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -76,7 +81,7 @@ public class GalleryFragment extends Fragment {
 
                     TextView label_nrfaktury = new TextView(getActivity());
 
-                    label_nrfaktury.setText("NrFaktury");
+                    label_nrfaktury.setText("NrFV");
                     TableRow.LayoutParams params2 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f);
                     label_nrfaktury.setLayoutParams(params2);
                     label_nrfaktury.setGravity(Gravity.CENTER);
@@ -96,7 +101,7 @@ public class GalleryFragment extends Fragment {
 
                     TextView label_netto = new TextView(getActivity());    // part3
 
-                    label_netto.setText("Platnosc");
+                    label_netto.setText("Netto");
                     TableRow.LayoutParams params4 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f);
                     label_netto.setLayoutParams(params4);
                     label_netto.setGravity(Gravity.CENTER);
@@ -106,13 +111,34 @@ public class GalleryFragment extends Fragment {
 
                     TextView label_vat = new TextView(getActivity());    // part3
 
-                    label_vat.setText("Wartosc Netto");
+                    label_vat.setText("Vat");
                     TableRow.LayoutParams params9 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f);
                     label_vat.setLayoutParams(params9);
                     label_vat.setGravity(Gravity.CENTER);
                     label_vat.setTypeface(Typeface.DEFAULT_BOLD);// part2
                     label_vat.setPadding(5, 5, 5, 5);
                     tr_head.addView(label_vat);// add the column to the table row here
+
+                    TextView label_brutto = new TextView(getActivity());
+
+                    label_brutto.setText("Brutto");
+                    TableRow.LayoutParams params13 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f);
+                    label_brutto.setLayoutParams(params13);
+                    label_brutto.setGravity(Gravity.CENTER);
+                    label_brutto.setTypeface(Typeface.DEFAULT_BOLD);// part2
+                    label_brutto.setPadding(5, 5, 5, 5);
+                    tr_head.addView(label_brutto);// add the column to the table row here
+
+                    TextView label_action = new TextView(getActivity());
+
+                    label_action.setText("Akcja");
+                    TableRow.LayoutParams params14 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f);
+                    label_action.setLayoutParams(params14);
+                    label_action.setGravity(Gravity.CENTER);
+                    label_action.setTypeface(Typeface.DEFAULT_BOLD);// part2
+                    label_action.setPadding(5, 5, 5, 5);
+                    tr_head.addView(label_action);// add the column to the table row here
+
 
                     ll.addView(tr_head, new TableLayout.LayoutParams(
                             TableRow.LayoutParams.MATCH_PARENT,
@@ -124,6 +150,11 @@ public class GalleryFragment extends Fragment {
                         TextView textV1 = new TextView(getActivity());
                         TextView textV2 = new TextView(getActivity());
                         TextView textV3 = new TextView(getActivity());
+                        TextView textV4 = new TextView(getActivity());
+                        TextView textV5 = new TextView(getActivity());
+                        Button btn = new Button(getActivity());
+
+
                         TableRow tr = new TableRow(getActivity());
 
                         //Create the tablerows
@@ -133,6 +164,7 @@ public class GalleryFragment extends Fragment {
                                 TableRow.LayoutParams.MATCH_PARENT,
                                 TableRow.LayoutParams.WRAP_CONTENT));
 
+
                         // Here create the TextView dynamically
 
                         textV = new TextView(getActivity());
@@ -141,7 +173,7 @@ public class GalleryFragment extends Fragment {
                         textV.setLayoutParams(params5);
                         textV.setGravity(Gravity.CENTER);
 
-                        textV.setPadding(5, 5, 5, 5);
+                        textV.setPadding(5, 20, 5, 20);
                         tr.addView(textV);
 
                         textV1 = new TextView(getActivity());
@@ -150,7 +182,7 @@ public class GalleryFragment extends Fragment {
                         textV1.setLayoutParams(params6);
                         textV1.setGravity(Gravity.CENTER);
 
-                        textV1.setPadding(5, 5, 5, 5);
+                        textV1.setPadding(5, 20, 5, 20);
                         tr.addView(textV1);
 
                         textV2 = new TextView(getActivity());
@@ -159,7 +191,7 @@ public class GalleryFragment extends Fragment {
                         textV2.setLayoutParams(params7);
                         textV2.setGravity(Gravity.CENTER);
 
-                        textV2.setPadding(5, 5, 5, 5);
+                        textV2.setPadding(5, 20, 5, 20);
                         tr.addView(textV2);
 
                         textV3 = new TextView(getActivity());
@@ -168,19 +200,60 @@ public class GalleryFragment extends Fragment {
                         textV3.setLayoutParams(params8);
                         textV3.setGravity(Gravity.CENTER);
 
-                        textV3.setPadding(5, 5, 5, 5);
+                        textV3.setPadding(5, 20, 5, 20);
                         tr.addView(textV3);
 
+                        textV4 = new TextView(getActivity());
+                        textV4.setText(inv.getWartoscBrutto());
+                        TableRow.LayoutParams params11 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f);
+                        textV4.setLayoutParams(params11);
+                        textV4.setGravity(Gravity.CENTER);
+
+                        textV4.setPadding(5, 20, 5, 20);
+                        tr.addView(textV4);
+
+                        btn = new Button(getActivity());
+
+                        btn.setText("Usuń");
+                        TableRow.LayoutParams params12 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f);
+                        btn.setLayoutParams(params12);
+                        btn.getBackground().setColorFilter(0xFFFF0000, PorterDuff.Mode.MULTIPLY);
+                        btn.setTextColor(Color.WHITE);
+                        btn.setGravity(Gravity.CENTER);
+                        btn.setPadding(5, 20, 5, 20);
+                        tr.addView(btn);
 
                         ll.addView(tr, new TableLayout.LayoutParams(
                                 TableRow.LayoutParams.MATCH_PARENT,
                                 TableRow.LayoutParams.WRAP_CONTENT));
 
-                        System.out.println(inv.getId());
+                        btn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Call<Invoice> call = MainActivity.service.delete("test");
+//calling the api
+                                call.enqueue(new Callback<Invoice>() {
+                                    @Override
+                                    public void onResponse(Call<Invoice> call, Response<Invoice> response) {
+                                        //displaying the message from the response as toast
+
+                                        if (response.code() == 200){
+
+                                        } else if (response.code() == 401){
+
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<Invoice> call, Throwable t) {
+                                        System.out.println(t.getMessage());
+                                    }
+                                });
+                            }
+                        });
 
                     }
 
-                    MainActivity.appPreference.showToast("Granted");
                 } else if (response.code() == 401){
                     MainActivity.appPreference.showToast("Access Denied");
                 }

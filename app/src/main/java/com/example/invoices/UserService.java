@@ -7,6 +7,7 @@ import java.util.Map;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
@@ -20,5 +21,8 @@ public interface UserService {
 
     @POST("invoice/read.php")
     Call<Invoice> invoices(@Body Map<String, String> invoices);
+
+    @DELETE("invoice/1")
+    Call<Invoice> delete(@Body String invoices);
 
 }

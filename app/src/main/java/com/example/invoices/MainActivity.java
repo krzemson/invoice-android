@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements MyInterface {
         final TextView message = findViewById(R.id.message);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.80/api/")
+                .baseUrl("http://192.168.43.199/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
@@ -61,10 +61,13 @@ public class MainActivity extends AppCompatActivity implements MyInterface {
             //check login status from sharedPreference
             if (appPreference.getLoginStatus()){
                 //when true
-                getSupportFragmentManager()
+                /*getSupportFragmentManager()
                         .beginTransaction()
                         .add(R.id.fragment_container, new ProfileFragment())
-                        .commit();
+                        .commit();*/
+
+                Intent MainIntent = new Intent(MainActivity.this, DashboardActivity.class);
+                startActivity(MainIntent);
             } else {
                 // when get false
                 getSupportFragmentManager()
