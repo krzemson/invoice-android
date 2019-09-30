@@ -42,7 +42,7 @@ public class Invoices {
     }
 
     public void setKlient(String klient) {
-        this.nrFaktury = klient;
+        this.wartoscBrutto = klient;
     }
 
     public String getVat() {
@@ -50,7 +50,7 @@ public class Invoices {
     }
 
     public void setVat(String vat) {
-        this.nrFaktury = vat;
+        this.vat = vat;
     }
 
     public String getNrFaktury() {

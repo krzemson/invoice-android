@@ -1,16 +1,20 @@
 package com.example.invoices.ui.gallery;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
@@ -19,9 +23,12 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.invoices.DashboardActivity;
 import com.example.invoices.Invoice;
@@ -29,9 +36,14 @@ import com.example.invoices.Invoices;
 import com.example.invoices.MainActivity;
 import com.example.invoices.R;
 import com.example.invoices.User;
+import com.example.invoices.ui.home.HomeFragment;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.net.ContentHandler;
+import java.net.Inet4Address;
 import java.sql.Wrapper;
 import java.util.HashMap;
 import java.util.List;
@@ -59,10 +71,7 @@ public class GalleryFragment extends Fragment {
         });
 
 
-        Map<String, String> params = new HashMap<>();
-        params.put("jwt", MainActivity.appPreference.getDisplayJwt());
-
-        Call<Invoice> call = MainActivity.service.invoices(params);
+        Call<Invoice> call = MainActivity.service.invoices(MainActivity.appPreference.getDisplayJwt());
 
 //calling the api
         call.enqueue(new Callback<Invoice>() {
@@ -144,7 +153,7 @@ public class GalleryFragment extends Fragment {
                             TableRow.LayoutParams.MATCH_PARENT,
                             TableRow.LayoutParams.WRAP_CONTENT));
 
-                    for (Invoices inv : response.body().getFaktury()){
+                    for (final Invoices inv : response.body().getFaktury()){
 
                         TextView textV = new TextView(getActivity());
                         TextView textV1 = new TextView(getActivity());
@@ -155,14 +164,86 @@ public class GalleryFragment extends Fragment {
                         Button btn = new Button(getActivity());
 
 
-                        TableRow tr = new TableRow(getActivity());
+                        final TableRow tr = new TableRow(getActivity());
 
                         //Create the tablerows
-                        tr = new TableRow(getActivity());
 
                         tr.setLayoutParams(new TableRow.LayoutParams(
                                 TableRow.LayoutParams.MATCH_PARENT,
                                 TableRow.LayoutParams.WRAP_CONTENT));
+
+
+                            tr.setClickable(true);
+
+                            tr.setOnClickListener(new View.OnClickListener() {
+                                                      public void onClick(View v) {
+                                                          AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+
+
+                                                          LinearLayout layout = new LinearLayout(getActivity());
+                                                          layout.setOrientation(LinearLayout.VERTICAL);
+
+                                                          TextInputLayout tl_invnr = new TextInputLayout(getActivity());
+                                                          TextInputLayout tl_gross = new TextInputLayout(getActivity());
+                                                          TextInputLayout tl_customer = new TextInputLayout(getActivity());
+                                                          TextInputLayout tl_vat = new TextInputLayout(getActivity());
+                                                          TextInputLayout tl_netto = new TextInputLayout(getActivity());
+
+                                                          TextInputEditText invnr = new TextInputEditText(getActivity());
+                                                          TextInputEditText gross = new TextInputEditText(getActivity());
+                                                          TextInputEditText customer = new TextInputEditText(getActivity());
+                                                          TextInputEditText vat = new TextInputEditText(getActivity());
+                                                          TextInputEditText netto = new TextInputEditText(getActivity());
+
+                                                          invnr.setText(inv.getNrFaktury());
+                                                          invnr.setSelection(invnr.getText().length());
+                                                          tl_invnr.setHint("Numer Faktury");
+
+                                                          tl_invnr.addView(invnr);
+                                                          layout.addView(tl_invnr);
+
+                                                          customer.setText(inv.getKlient());
+                                                          customer.setSelection(invnr.getText().length());
+                                                          tl_customer.setHint("Klient");
+
+                                                          tl_customer.addView(customer);
+                                                          layout.addView(tl_customer);
+
+                                                          gross.setText(inv.getWartoscBrutto());
+                                                          gross.setSelection(gross.getText().length());
+                                                          tl_gross.setHint("Wartosc Brutto");
+
+                                                          tl_gross.addView(gross);
+                                                          layout.addView(tl_gross);
+
+                                                          vat.setText(inv.getVat());
+                                                          vat.setSelection(vat.getText().length());
+                                                          tl_vat.setHint("Wartosc Vat");
+
+                                                          tl_vat.addView(vat);
+                                                          layout.addView(tl_vat);
+
+                                                          netto.setText(inv.getWartoscNetto());
+                                                          netto.setSelection(netto.getText().length());
+                                                          tl_netto.setHint("Wartosc Netto");
+
+                                                          tl_netto.addView(netto);
+                                                          layout.addView(tl_netto);
+
+                                                          alertDialog.setTitle("Edycja Faktury");
+                                                          alertDialog.setMessage("Edytuj Fakturę");
+
+                                                          alertDialog.setView(layout);
+
+                                                          alertDialog.setPositiveButton("Edytuj",
+                                                                  new DialogInterface.OnClickListener() {
+                                                                      public void onClick(DialogInterface dialog, int which) {
+                                                                          MainActivity.appPreference.showToast("Faktura zmieniona");
+                                                                      }
+                                                                  });
+                                                          alertDialog.show();
+                                                      }
+                                                  });
 
 
                         // Here create the TextView dynamically
@@ -227,28 +308,61 @@ public class GalleryFragment extends Fragment {
                                 TableRow.LayoutParams.MATCH_PARENT,
                                 TableRow.LayoutParams.WRAP_CONTENT));
 
+                        btn.setClickable(true);
+
                         btn.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Call<Invoice> call = MainActivity.service.delete("test");
-//calling the api
-                                call.enqueue(new Callback<Invoice>() {
-                                    @Override
-                                    public void onResponse(Call<Invoice> call, Response<Invoice> response) {
-                                        //displaying the message from the response as toast
 
-                                        if (response.code() == 200){
+                                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
 
-                                        } else if (response.code() == 401){
+                                final AlertDialog ad = alertDialog.create();
 
-                                        }
-                                    }
+                                alertDialog.setTitle("Usunięcie faktury");
+                                alertDialog.setMessage("Czy na pewno usunąć fakturę ?");
 
-                                    @Override
-                                    public void onFailure(Call<Invoice> call, Throwable t) {
-                                        System.out.println(t.getMessage());
+                                alertDialog.setPositiveButton("Usuń",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+
+                                                Call<Invoice> call = MainActivity.service.delete(MainActivity.appPreference.getDisplayJwt(), inv.getId());
+
+                                                call.enqueue(new Callback<Invoice>() {
+                                                    @Override
+                                                    public void onResponse(Call<Invoice> call, Response<Invoice> response) {
+                                                        //displaying the message from the response as toast
+
+                                                        if (response.code() == 200){
+
+                                                            //NavHostFragment.findNavController(GalleryFragment.this).navigate(R.id.nav_share);
+
+                                                            FragmentTransaction ftr = getFragmentManager().beginTransaction();
+                                                            ftr.detach(GalleryFragment.this).attach(GalleryFragment.this).commit();
+
+                                                            MainActivity.appPreference.showToast("Faktura usunieta");
+
+                                                        } else if (response.code() == 401){
+                                                            MainActivity.appPreference.showToast("Nie znaleziono faktury");
+                                                        }
+                                                    }
+
+                                                    @Override
+                                                    public void onFailure(Call<Invoice> call, Throwable t) {
+                                                        System.out.println(t.getMessage());
+                                                    }
+                                                });
+
+                                            }
+                                        });
+
+                                alertDialog.setNegativeButton("Anuluj", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        ad.cancel();
                                     }
                                 });
+
+                                alertDialog.show();
+
                             }
                         });
 

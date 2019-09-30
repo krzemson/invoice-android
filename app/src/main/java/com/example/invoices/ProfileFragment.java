@@ -27,7 +27,7 @@ public class ProfileFragment extends Fragment {
     private TextView name, email;
     private Button logoutBtn;
 
-    MyInterface logoutListener;
+    LogoutInterface logoutListener;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -64,7 +64,7 @@ public class ProfileFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         Activity activity = (Activity) context;
-        logoutListener = (MyInterface) activity;
+        logoutListener = (LogoutInterface) activity;
 
     }
 }

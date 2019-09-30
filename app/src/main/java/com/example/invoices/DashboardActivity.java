@@ -1,5 +1,6 @@
 package com.example.invoices;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -13,8 +14,11 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.appcompat.app.AlertDialog;
+
+import androidx.core.app.NavUtils;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
@@ -60,7 +64,7 @@ public class DashboardActivity extends AppCompatActivity implements LogoutInterf
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share, R.id.nav_send)
+                R.id.nav_tools, R.id.nav_share, R.id.nav_send, R.id.profile)
                 .setDrawerLayout(drawer)
                 .build();
 
@@ -92,8 +96,9 @@ public class DashboardActivity extends AppCompatActivity implements LogoutInterf
             String message = "Settings menu";
             appPreference.showToast(message);
 
-            Intent MainIntent = new Intent(DashboardActivity.this, MainActivity.class);
-            startActivity(MainIntent);
+
+            //Intent MainIntent = new Intent(DashboardActivity.this, MainActivity.class);
+            //startActivity(MainIntent);
         }
 
         return super.onOptionsItemSelected(item);
