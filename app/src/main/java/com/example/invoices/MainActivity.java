@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements MyInterface {
         final TextView message = findViewById(R.id.message);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.43.199/api/")
+                .baseUrl("http://192.168.0.80/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();

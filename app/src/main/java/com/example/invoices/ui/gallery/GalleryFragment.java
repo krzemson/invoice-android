@@ -188,12 +188,14 @@ public class GalleryFragment extends Fragment {
                                                           TextInputLayout tl_customer = new TextInputLayout(getActivity());
                                                           TextInputLayout tl_vat = new TextInputLayout(getActivity());
                                                           TextInputLayout tl_netto = new TextInputLayout(getActivity());
+                                                          TextInputLayout tl_term = new TextInputLayout(getActivity());
 
-                                                          TextInputEditText invnr = new TextInputEditText(getActivity());
-                                                          TextInputEditText gross = new TextInputEditText(getActivity());
-                                                          TextInputEditText customer = new TextInputEditText(getActivity());
-                                                          TextInputEditText vat = new TextInputEditText(getActivity());
-                                                          TextInputEditText netto = new TextInputEditText(getActivity());
+                                                          final TextInputEditText invnr = new TextInputEditText(getActivity());
+                                                          final TextInputEditText gross = new TextInputEditText(getActivity());
+                                                          final TextInputEditText customer = new TextInputEditText(getActivity());
+                                                          final TextInputEditText vat = new TextInputEditText(getActivity());
+                                                          final TextInputEditText netto = new TextInputEditText(getActivity());
+                                                          final TextInputEditText term = new TextInputEditText(getActivity());
 
                                                           invnr.setText(inv.getNrFaktury());
                                                           invnr.setSelection(invnr.getText().length());
@@ -211,36 +213,96 @@ public class GalleryFragment extends Fragment {
 
                                                           gross.setText(inv.getWartoscBrutto());
                                                           gross.setSelection(gross.getText().length());
-                                                          tl_gross.setHint("Wartosc Brutto");
+                                                          tl_gross.setHint("Wartość Brutto");
 
                                                           tl_gross.addView(gross);
                                                           layout.addView(tl_gross);
 
                                                           vat.setText(inv.getVat());
                                                           vat.setSelection(vat.getText().length());
-                                                          tl_vat.setHint("Wartosc Vat");
+                                                          tl_vat.setHint("Wartość Vat");
 
                                                           tl_vat.addView(vat);
                                                           layout.addView(tl_vat);
 
                                                           netto.setText(inv.getWartoscNetto());
                                                           netto.setSelection(netto.getText().length());
-                                                          tl_netto.setHint("Wartosc Netto");
+                                                          tl_netto.setHint("Wartość Netto");
 
                                                           tl_netto.addView(netto);
                                                           layout.addView(tl_netto);
 
+                                                          term.setText(inv.getTermin());
+                                                          term.setSelection(term.getText().length());
+                                                          tl_term.setHint("Termin Platności");
+
+                                                          tl_term.addView(term);
+                                                          layout.addView(tl_term);
+
                                                           alertDialog.setTitle("Edycja Faktury");
-                                                          alertDialog.setMessage("Edytuj Fakturę");
+                                                          alertDialog.setMessage("Czy na pewno chcesz zmienić fakturę ?");
 
                                                           alertDialog.setView(layout);
+
+                                                          final AlertDialog ad = alertDialog.create();
 
                                                           alertDialog.setPositiveButton("Edytuj",
                                                                   new DialogInterface.OnClickListener() {
                                                                       public void onClick(DialogInterface dialog, int which) {
+
+                                                                          String Invnum = invnr.getText().toString();
+                                                                          String Customer = customer.getText().toString();
+                                                                          String Gross = gross.getText().toString();
+                                                                          String Vat = vat.getText().toString();
+                                                                          String Netto = netto.getText().toString();
+                                                                          String Term = term.getText().toString();
+
+                                                                          Map<String, String> params = new HashMap<>();
+                                                                          params.put("invnum", Invnum);
+                                                                          params.put("customer", Customer);
+                                                                          params.put("gross", Gross);
+                                                                          params.put("vat", Vat);
+                                                                          params.put("netto", Netto);
+                                                                          params.put("term", Term);
+
+                                                                          Call<Invoice> call = MainActivity.service.update(MainActivity.appPreference.getDisplayJwt(), inv.getId(), params);
+
+                                                                          call.enqueue(new Callback<Invoice>() {
+                                                                              @Override
+                                                                              public void onResponse(Call<Invoice> call, Response<Invoice> response) {
+                                                                                  //displaying the message from the response as toast
+
+                                                                                  if (response.code() == 200){
+
+                                                                                      //NavHostFragment.findNavController(GalleryFragment.this).navigate(R.id.nav_gallery);
+
+                                                                                      FragmentTransaction ftr = getFragmentManager().beginTransaction();
+                                                                                      ftr.detach(GalleryFragment.this).attach(GalleryFragment.this).commit();
+
+
+                                                                                      System.out.println(call.request());
+                                                                                      MainActivity.appPreference.showToast("Faktura zmieniona");
+
+                                                                                  } else if (response.code() == 401){
+                                                                                      MainActivity.appPreference.showToast("Nie znaleziono faktury");
+                                                                                  }
+                                                                              }
+
+                                                                              @Override
+                                                                              public void onFailure(Call<Invoice> call, Throwable t) {
+                                                                                  System.out.println(t.getMessage());
+                                                                              }
+                                                                          });
+
                                                                           MainActivity.appPreference.showToast("Faktura zmieniona");
                                                                       }
                                                                   });
+
+                                                          alertDialog.setNegativeButton("Anuluj", new DialogInterface.OnClickListener() {
+                                                              public void onClick(DialogInterface dialog, int which) {
+                                                                  ad.cancel();
+                                                              }
+                                                          });
                                                           alertDialog.show();
                                                       }
                                                   });
