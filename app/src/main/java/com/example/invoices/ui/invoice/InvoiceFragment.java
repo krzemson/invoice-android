@@ -1,22 +1,16 @@
-package com.example.invoices.ui.gallery;
+package com.example.invoices.ui.invoice;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -28,42 +22,32 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.invoices.DashboardActivity;
 import com.example.invoices.Invoice;
 import com.example.invoices.Invoices;
 import com.example.invoices.MainActivity;
 import com.example.invoices.R;
-import com.example.invoices.User;
-import com.example.invoices.ui.home.HomeFragment;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
-import java.net.ContentHandler;
-import java.net.Inet4Address;
-import java.sql.Wrapper;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class GalleryFragment extends Fragment {
+public class InvoiceFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
+    private InvoiceViewModel invoiceViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                ViewModelProviders.of(this).get(GalleryViewModel.class);
-        final View root = inflater.inflate(R.layout.fragment_gallery, container, false);
+        invoiceViewModel =
+                ViewModelProviders.of(this).get(InvoiceViewModel.class);
+        final View root = inflater.inflate(R.layout.fragment_invoice, container, false);
         final TextView textView = root.findViewById(R.id.text_gallery);
-        galleryViewModel.getText().observe(this, new Observer<String>() {
+        invoiceViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
@@ -205,7 +189,7 @@ public class GalleryFragment extends Fragment {
                                                           layout.addView(tl_invnr);
 
                                                           customer.setText(inv.getKlient());
-                                                          customer.setSelection(invnr.getText().length());
+                                                          customer.setSelection(customer.getText().length());
                                                           tl_customer.setHint("Klient");
 
                                                           tl_customer.addView(customer);
@@ -274,13 +258,11 @@ public class GalleryFragment extends Fragment {
 
                                                                                   if (response.code() == 200){
 
-                                                                                      //NavHostFragment.findNavController(GalleryFragment.this).navigate(R.id.nav_gallery);
+                                                                                      //NavHostFragment.findNavController(InvoiceFragment.this).navigate(R.id.nav_gallery);
 
                                                                                       FragmentTransaction ftr = getFragmentManager().beginTransaction();
-                                                                                      ftr.detach(GalleryFragment.this).attach(GalleryFragment.this).commit();
+                                                                                      ftr.detach(InvoiceFragment.this).attach(InvoiceFragment.this).commit();
 
-
-                                                                                      System.out.println(call.request());
                                                                                       MainActivity.appPreference.showToast("Faktura zmieniona");
 
                                                                                   } else if (response.code() == 401){
@@ -396,10 +378,10 @@ public class GalleryFragment extends Fragment {
 
                                                         if (response.code() == 200){
 
-                                                            //NavHostFragment.findNavController(GalleryFragment.this).navigate(R.id.nav_share);
+                                                            //NavHostFragment.findNavController(InvoiceFragment.this).navigate(R.id.nav_share);
 
                                                             FragmentTransaction ftr = getFragmentManager().beginTransaction();
-                                                            ftr.detach(GalleryFragment.this).attach(GalleryFragment.this).commit();
+                                                            ftr.detach(InvoiceFragment.this).attach(InvoiceFragment.this).commit();
 
                                                             MainActivity.appPreference.showToast("Faktura usunieta");
 

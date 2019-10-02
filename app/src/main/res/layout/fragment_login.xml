@@ -13,7 +13,7 @@
         android:layout_marginBottom="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Admin Login"
+        android:text="Panel Logowania"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
         android:gravity="center_horizontal"/>
@@ -21,7 +21,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Username"
+        android:hint="Login"
         android:inputType="textEmailAddress"
         android:layout_marginTop="20dp"
         android:id="@+id/emailInput"/>
@@ -30,7 +30,7 @@
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
+        android:hint="Hasło"
         android:inputType="textPassword"
         android:id="@+id/passwordInput"/>
 
@@ -40,7 +40,7 @@
         android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="L o g i n"
+        android:text="Zaloguj się"
         android:textColor="#fff"
         android:textSize="16sp"
         android:background="@color/colorPrimary"
@@ -52,7 +52,7 @@
         android:layout_marginBottom="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="New here? Register"
+        android:text="Nie masz jeszcze konta ? Zarejestruj się !"
         android:gravity="center_horizontal"/>
 
 </LinearLayout>

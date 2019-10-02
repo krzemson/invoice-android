@@ -1,16 +1,16 @@
-package com.example.invoices.ui.gallery;
+package com.example.invoices.ui.invoiceadd;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
+public class InvoiceAddViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public GalleryViewModel() {
+    public InvoiceAddViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Lista Faktur Sprzedaży");
+        mText.setValue("Dodaj nową fakturę");
     }
 
     public LiveData<String> getText() {

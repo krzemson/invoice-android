@@ -10,20 +10,36 @@
             android:title="@string/menu_home" />
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@android:drawable/ic_input_get"
             android:title="@string/menu_gallery" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@android:drawable/ic_input_add"
             android:title="@string/menu_slideshow" />
         <item
             android:id="@+id/nav_tools"
-            android:icon="@drawable/ic_menu_share"
+            android:icon="@android:drawable/ic_btn_speak_now"
             android:title="@string/menu_tools" />
         <item
             android:id="@+id/nav_send"
             android:icon="@drawable/ic_menu_send"
             android:title="@string/menu_send" />
+        <item
+            android:id="@+id/invoicep"
+            android:icon="@android:drawable/ic_input_get"
+            android:title="@string/menu_invoicep" />
+        <item
+            android:id="@+id/invoicep_add"
+            android:icon="@android:drawable/ic_input_add"
+            android:title="@string/menu_invoicep_add" />
+        <item
+            android:id="@+id/supplier"
+            android:icon="@android:drawable/ic_btn_speak_now"
+            android:title="@string/menu_supplier" />
+        <item
+            android:id="@+id/supplier_add"
+            android:icon="@android:drawable/ic_input_add"
+            android:title="@string/menu_supplier_add" />
     </group>
 
     <item android:title="Ustawienia">
@@ -32,11 +48,6 @@
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_manage"
                 android:title="@string/menu_share" />
-
-            <item
-                android:id="@+id/profile"
-                android:icon="@drawable/ic_menu_send"
-                android:title="lelele" />
         </menu>
     </item>
 

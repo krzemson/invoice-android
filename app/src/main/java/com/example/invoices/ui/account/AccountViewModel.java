@@ -1,4 +1,4 @@
-package com.example.invoices.ui.share;
+package com.example.invoices.ui.account;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -6,11 +6,11 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.invoices.MainActivity;
 
-public class ShareViewModel extends ViewModel {
+public class AccountViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public ShareViewModel() {
+    public AccountViewModel() {
         mText = new MutableLiveData<>();
         String Name = "Witaj, " + MainActivity.appPreference.getDisplayName() + " " + MainActivity.appPreference.getDisplaySurname();
         mText.setValue(Name);

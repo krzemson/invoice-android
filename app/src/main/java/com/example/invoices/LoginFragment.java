@@ -64,13 +64,13 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        /*registerTV = view.findViewById(R.id.registerTV);
+        registerTV = view.findViewById(R.id.registerTV);
         registerTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 loginFromActivityListener.register();
             }
-        });*/
+        });
         return view;
     } //ending onCreateView
 
@@ -105,6 +105,11 @@ public class LoginFragment extends Fragment {
                                 response.body().getName(),
                                 response.body().getSurname(),
                                 response.body().getEmail(),
+                                response.body().getCompany(),
+                                response.body().getAddress(),
+                                response.body().getCity(),
+                                response.body().getNip(),
+                                response.body().getRegon(),
                                 response.body().getJwt());
                     } else if (response.code() == 401){
                         MainActivity.appPreference.showToast("Błędne dane logowania");

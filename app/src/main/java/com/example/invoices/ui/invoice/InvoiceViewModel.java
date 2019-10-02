@@ -1,16 +1,16 @@
-package com.example.invoices.ui.tools;
+package com.example.invoices.ui.invoice;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ToolsViewModel extends ViewModel {
+public class InvoiceViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public ToolsViewModel() {
+    public InvoiceViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is tools fragment");
+        mText.setValue("Lista Faktur Sprzedaży");
     }
 
     public LiveData<String> getText() {

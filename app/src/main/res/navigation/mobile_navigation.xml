@@ -13,27 +13,27 @@
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.example.invoices.ui.gallery.GalleryFragment"
+        android:name="com.example.invoices.ui.invoice.InvoiceFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_invoice" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.example.invoices.ui.slideshow.SlideshowFragment"
+        android:name="com.example.invoices.ui.invoiceadd.InvoiceAddFragment"
         android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_invoiceadd" />
 
     <fragment
         android:id="@+id/nav_tools"
-        android:name="com.example.invoices.ui.tools.ToolsFragment"
+        android:name="com.example.invoices.ui.customer.CustomerFragment"
         android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
+        tools:layout="@layout/fragment_customer" />
 
     <fragment
         android:id="@+id/nav_share"
-        android:name="com.example.invoices.ui.share.ShareFragment"
+        android:name="com.example.invoices.ui.account.AccountFragment"
         android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
+        tools:layout="@layout/fragment_account" />
 
     <fragment
         android:id="@+id/nav_send"
@@ -41,8 +41,27 @@
         android:label="@string/menu_send"
         tools:layout="@layout/fragment_send" />
     <fragment
-        android:id="@+id/profile"
+        android:id="@+id/invoicep"
         android:name="com.example.invoices.ProfileFragment"
-        android:label="@string/menu_send"
+        android:label="@string/menu_invoicep"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/invoicep_add"
+        android:name="com.example.invoices.ProfileFragment"
+        android:label="@string/menu_invoicep_add"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/invoicep_add"
+        android:name="com.example.invoices.ProfileFragment"
+        android:label="@string/menu_invoicep_add"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/invoicep_add"
+        android:name="com.example.invoices.ProfileFragment"
+        android:label="@string/menu_invoicep_add"
+        tools:layout="@layout/fragment_profile" />
+
 </navigation>

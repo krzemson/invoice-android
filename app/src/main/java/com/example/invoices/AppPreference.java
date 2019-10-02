@@ -67,6 +67,46 @@ public class AppPreference {
         return sharedPreferences.getString(String.valueOf(R.string.s_pref_email), "email");
     }
 
+    public void setDisplayCompany(String company){
+        editor.putString(String.valueOf(R.string.s_pref_company), company);
+        editor.commit();
+    }
+    public String getDisplayCompany(){
+        return sharedPreferences.getString(String.valueOf(R.string.s_pref_company), "company");
+    }
+
+    public void setDisplayAddress(String address){
+        editor.putString(String.valueOf(R.string.s_pref_address), address);
+        editor.commit();
+    }
+    public String getDisplayAddress(){
+        return sharedPreferences.getString(String.valueOf(R.string.s_pref_address), "address");
+    }
+
+    public void setDisplayCity(String city){
+        editor.putString(String.valueOf(R.string.s_pref_city), city);
+        editor.commit();
+    }
+    public String getDisplayCity(){
+        return sharedPreferences.getString(String.valueOf(R.string.s_pref_city), "city");
+    }
+
+    public void setDisplayNip(String nip){
+        editor.putString(String.valueOf(R.string.s_pref_nip), nip);
+        editor.commit();
+    }
+    public String getDisplayNip(){
+        return sharedPreferences.getString(String.valueOf(R.string.s_pref_nip), "nip");
+    }
+
+    public void setDisplayRegon(String regon){
+        editor.putString(String.valueOf(R.string.s_pref_regon), regon);
+        editor.commit();
+    }
+    public String getDisplayRegon(){
+        return sharedPreferences.getString(String.valueOf(R.string.s_pref_regon), "regon");
+    }
+
     // For Message
     public void setDisplayMessage(String message){
         editor.putString(String.valueOf(R.string.s_pref_login_message), message);

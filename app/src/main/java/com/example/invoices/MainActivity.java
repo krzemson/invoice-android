@@ -41,17 +41,15 @@ public class MainActivity extends AppCompatActivity implements MyInterface {
         final TextView message = findViewById(R.id.message);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.80/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .build();
+            .baseUrl("http://192.168.0.80/api/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .build();
 
         service = retrofit.create(UserService.class);
 
         container_layout = findViewById(R.id.fragment_container);
         appPreference = new AppPreference(this);
-
-        //Log.e("created_at: ", c_date);
 
         if (container_layout != null){
             if (savedInstanceState != null){
@@ -60,12 +58,6 @@ public class MainActivity extends AppCompatActivity implements MyInterface {
 
             //check login status from sharedPreference
             if (appPreference.getLoginStatus()){
-                //when true
-                /*getSupportFragmentManager()
-                        .beginTransaction()
-                        .add(R.id.fragment_container, new ProfileFragment())
-                        .commit();*/
-
                 Intent MainIntent = new Intent(MainActivity.this, DashboardActivity.class);
                 startActivity(MainIntent);
             } else {
@@ -79,22 +71,27 @@ public class MainActivity extends AppCompatActivity implements MyInterface {
     }
 
     // overridden from MyInterface
-    /*@Override
+    @Override
     public void register() {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, new RegistrationFragment())
                 .addToBackStack(null)
                 .commit();
-    }*/
+    }
     @Override
-    public void login(String message, Integer id, String username, String name, String surname, String email,String jwt) {
+    public void login(String message, Integer id, String username, String name, String surname, String email, String company,String address,String city,String nip,String regon,String jwt) {
         appPreference.setDisplayMessage(message);
         appPreference.setDisplayId(id);
         appPreference.setDisplayUsername(username);
         appPreference.setDisplayName(name);
         appPreference.setDisplaySurname(surname);
         appPreference.setDisplayEmail(email);
+        appPreference.setDisplayCompany(company);
+        appPreference.setDisplayAddress(address);
+        appPreference.setDisplayCity(city);
+        appPreference.setDisplayNip(nip);
+        appPreference.setDisplayRegon(regon);
         appPreference.setDisplayJwt(jwt);
 
         /*getSupportFragmentManager()

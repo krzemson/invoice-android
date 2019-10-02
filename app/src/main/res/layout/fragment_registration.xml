@@ -13,7 +13,7 @@
         android:layout_marginBottom="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create a new account"
+        android:text="Stwórz nowe konto"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
         android:gravity="center_horizontal"/>
@@ -21,7 +21,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Full Name"
+        android:hint="Login"
         android:inputType="textCapCharacters"
         android:id="@+id/nameInput"/>
 
@@ -36,14 +36,21 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Phone"
-        android:inputType="number"
+        android:hint="Imię"
+        android:inputType="textCapCharacters"
         android:id="@+id/phoneInput"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
+        android:hint="Nazwisko"
+        android:inputType="textCapCharacters"
+        android:id="@+id/surname"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Hasło"
         android:inputType="textPassword"
         android:id="@+id/passwordInput"/>
 
@@ -53,7 +60,7 @@
         android:layout_marginBottom="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="R e g i s t e r"
+        android:text="Zarejestruj się"
         android:textAllCaps="false"
         android:textColor="#fff"
         android:textSize="16sp"

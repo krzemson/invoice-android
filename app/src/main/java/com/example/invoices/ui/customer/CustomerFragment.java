@@ -1,4 +1,4 @@
-package com.example.invoices.ui.tools;
+package com.example.invoices.ui.customer;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.invoices.R;
 
-public class ToolsFragment extends Fragment {
+public class CustomerFragment extends Fragment {
 
-    private ToolsViewModel toolsViewModel;
+    private CustomerViewModel customerViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        toolsViewModel =
-                ViewModelProviders.of(this).get(ToolsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_tools, container, false);
+        customerViewModel =
+                ViewModelProviders.of(this).get(CustomerViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_customer, container, false);
         final TextView textView = root.findViewById(R.id.text_tools);
-        toolsViewModel.getText().observe(this, new Observer<String>() {
+        customerViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

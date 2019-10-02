@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">invoices</string>
+    <string name="app_name">System Faktur</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello fragment</string>
@@ -11,6 +11,11 @@
     <string name="s_pref_name">sh_preference_name</string>
     <string name="s_pref_surname">sh_preference_surname</string>
     <string name="s_pref_email">sh_preference_email</string>
+    <string name="s_pref_company">sh_preference_company</string>
+    <string name="s_pref_address">sh_preference_address</string>
+    <string name="s_pref_city">sh_preference_city</string>
+    <string name="s_pref_nip">sh_preference_nip</string>
+    <string name="s_pref_regon">sh_preference_regon</string>
     <string name="s_pref_jwt">sh_preference_jwt</string>
     <string name="title_activity_dashboard">DashboardActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -25,6 +30,27 @@
     <string name="menu_slideshow">Dodaj Fakturę Sprzedaży</string>
     <string name="menu_tools">Klienci</string>
     <string name="menu_share">Profil</string>
-    <string name="menu_send">Dodaj klienta</string>
+    <string name="menu_invoicep">Faktury Zakupu</string>
+    <string name="menu_invoicep_add">Dodaj Fakturę Zakupu</string>
+    <string name="menu_supplier_add">Dodaj Dostawcę</string>
+    <string name="menu_supplier">Dostawcy</string>
+    <string name="menu_send">Dodaj Klienta</string>
+    <string name="warto_brutto">Wartość Brutto</string>
+    <string name="warto_vat">Wartość Vat</string>
+    <string name="warto_netto">Wartość Netto</string>
+    <string name="termin_p_atno_ci">Termin Płatności</string>
+    <string name="dodaj_faktur">Dodaj fakturę</string>
+    <string name="nazwa_u_ytkownika">Nazwa Użytkownika</string>
+    <string name="imi">Imię</string>
+    <string name="nazwisko">Nazwisko</string>
+    <string name="email">Email</string>
+    <string name="firma">Firma</string>
+    <string name="zapisz">Zapisz</string>
+    <string name="ulica">Ulica</string>
+    <string name="regon">REGON</string>
+    <string name="nip">NIP</string>
+    <string name="miasto">Miasto</string>
+    <string name="data_us_ugi">Data usługi</string>
+    <string name="data_wystawienia">Data wystawienia</string>
 
 </resources>

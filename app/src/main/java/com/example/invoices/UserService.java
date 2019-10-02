@@ -16,15 +16,23 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface UserService {
-
     @Headers({
             "Content-Type:application/json"
     })
     @POST("login")
     Call<User> login(@Body Map<String, String> login);
 
+    @POST("invoices")
+    Call<Invoice> create(@Header("Authorization") String authorization, @Body Map<String, String> invoice);
+
+    @POST("register")
+    Call<User> register(@Body Map<String, String> invoice);
+
     @GET("invoices")
     Call<Invoice> invoices(@Header("Authorization") String authorization);
+
+    @GET("customers")
+    Call<Customer> customers(@Header("Authorization") String authorization);
 
     @DELETE("invoices/{id}")
     Call<Invoice> delete(@Header("Authorization") String authorization,@Path("id") int invoiceId);
