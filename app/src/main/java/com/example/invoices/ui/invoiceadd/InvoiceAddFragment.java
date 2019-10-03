@@ -53,6 +53,18 @@ public class InvoiceAddFragment extends Fragment {
             }
         });
 
+
+        Spinner dropdownpay = root.findViewById(R.id.payment);
+//create a list of items for the spinner.
+        String[] payments = new String[]{"Gotówka", "Płatność kartą", "Przelew - 7 dni", "Przelew - 14 dni"};
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_spinner_dropdown_item, payments);
+
+        dropdownpay.setAdapter(adapter);
+
+
         Call<Customer> call = MainActivity.service.customers(MainActivity.appPreference.getDisplayJwt());
 
         call.enqueue(new Callback<Customer>() {

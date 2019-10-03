@@ -169,7 +169,7 @@
             android:layout_margin="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Log Out"
+            android:text="Wyloguj się"
             android:textAllCaps="false"
             android:textColor="#fff"
             android:textSize="16sp"
