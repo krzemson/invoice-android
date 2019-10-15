@@ -28,7 +28,7 @@ import retrofit2.Response;
  */
 public class RegistrationFragment extends Fragment {
 
-    private EditText nameInput, emailInput, phoneInput, passwordInput;
+    private EditText username, email, name, surname, password;
     Button regBtn;
 
     public RegistrationFragment() {
@@ -41,29 +41,30 @@ public class RegistrationFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_registration, container, false);
-        nameInput = view.findViewById(R.id.nameInput);
-        emailInput = view.findViewById(R.id.emailInput);
-        phoneInput = view.findViewById(R.id.phoneInput);
-        passwordInput = view.findViewById(R.id.passwordInput);
+        username = view.findViewById(R.id.username);
+        email = view.findViewById(R.id.email);
+        name = view.findViewById(R.id.name);
+        surname = view.findViewById(R.id.surname);
+        password = view.findViewById(R.id.password);
         regBtn = view.findViewById(R.id.regBtn);
         regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 registerUser();
-                Log.e("reg button", "clicked");
             }
         });
         return view;
     }
 
     public void registerUser() {
-        String Username = nameInput.getText().toString();
-        String Email = emailInput.getText().toString();
-        String Phone = phoneInput.getText().toString();
-        String Password = passwordInput.getText().toString();
+        String Username = username.getText().toString();
+        String Email = email.getText().toString();
+        String Name = name.getText().toString();
+        String Surname = surname.getText().toString();
+        String Password = password.getText().toString();
 
         if (TextUtils.isEmpty(Username)){
-            MainActivity.appPreference.showToast("Your name is required.");
+            MainActivity.appPreference.showToast("Your username is required.");
         } else if (TextUtils.isEmpty(Email)){
             MainActivity.appPreference.showToast("Your email is required.");
         } else if (!Patterns.EMAIL_ADDRESS.matcher(Email).matches()) {
@@ -77,25 +78,26 @@ public class RegistrationFragment extends Fragment {
 
             Map<String, String> params = new HashMap<>();
             params.put("username", Username);
-            params.put("email", Email);
-            params.put("phone", Phone);
             params.put("password", Password);
+            params.put("email", Email);
+            params.put("name", Name);
+            params.put("surname", Surname);
 
             Call<User> userCall = MainActivity.service.register(params);
             userCall.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
                     if (response.code() == 201){
-                        Log.e("response", response.body().getEmail());
-                        nameInput.setText("");
-                        emailInput.setText("");
-                        phoneInput.setText("");
-                        passwordInput.setText("");
-                        MainActivity.appPreference.showToast("Registered Successfully");
+                        username.setText("");
+                        email.setText("");
+                        name.setText("");
+                        surname.setText("");
+                        password.setText("");
+                        MainActivity.appPreference.showToast("Pomyślnie zarejestrowano");
                     } else if (response.code() == 409){
-                        MainActivity.appPreference.showToast("This email already exists");
+                        MainActivity.appPreference.showToast("Email już istnieje");
                     } else if (response.code() == 503){
-                        MainActivity.appPreference.showToast("Oops! something went wrong.");
+                        MainActivity.appPreference.showToast("Oops! Coś poszło nie tak");
                     }
                 }
 

@@ -26,7 +26,7 @@ public interface UserService {
     Call<Invoice> create(@Header("Authorization") String authorization, @Body Map<String, String> invoice);
 
     @POST("register")
-    Call<User> register(@Body Map<String, String> invoice);
+    Call<User> register(@Body Map<String, String> user);
 
     @GET("invoices")
     Call<Invoice> invoices(@Header("Authorization") String authorization);
@@ -39,5 +39,8 @@ public interface UserService {
 
     @PUT("invoices/{id}")
     Call<Invoice> update(@Header("Authorization") String authorization,@Path("id") int invoiceId, @Body Map<String, String> invoice);
+
+    @GET("resources")
+    Call<Resource> resource(@Header("Authorization") String authorization);
 
 }

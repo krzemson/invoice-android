@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:hint="Login"
         android:inputType="textCapCharacters"
-        android:id="@+id/nameInput"/>
+        android:id="@+id/username"/>
 
 
     <EditText
@@ -31,14 +31,14 @@
         android:layout_height="wrap_content"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:id="@+id/emailInput"/>
+        android:id="@+id/email"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Imię"
         android:inputType="textCapCharacters"
-        android:id="@+id/phoneInput"/>
+        android:id="@+id/name"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:hint="Hasło"
         android:inputType="textPassword"
-        android:id="@+id/passwordInput"/>
+        android:id="@+id/password"/>
 
     <Button
         android:id="@+id/regBtn"

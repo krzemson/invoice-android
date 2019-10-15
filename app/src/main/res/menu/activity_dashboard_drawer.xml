@@ -16,7 +16,7 @@
             android:id="@+id/nav_slideshow"
             android:icon="@android:drawable/ic_input_add"
             android:title="@string/menu_slideshow" />
-        <item
+        <!--<item
             android:id="@+id/nav_tools"
             android:icon="@android:drawable/ic_btn_speak_now"
             android:title="@string/menu_tools" />
@@ -39,7 +39,7 @@
         <item
             android:id="@+id/supplier_add"
             android:icon="@android:drawable/ic_input_add"
-            android:title="@string/menu_supplier_add" />
+            android:title="@string/menu_supplier_add" />-->
     </group>
 
     <item android:title="Ustawienia">
