@@ -22,6 +22,9 @@ public interface UserService {
     @POST("login")
     Call<User> login(@Body Map<String, String> login);
 
+    @PUT("user/{id}")
+    Call<User> user(@Header("Authorization") String authorization,@Path("id") int userId, @Body Map<String, String> user);
+
     @POST("invoices")
     Call<Invoice> create(@Header("Authorization") String authorization, @Body Map<String, String> invoice);
 

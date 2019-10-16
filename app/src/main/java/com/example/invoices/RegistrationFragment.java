@@ -64,15 +64,15 @@ public class RegistrationFragment extends Fragment {
         String Password = password.getText().toString();
 
         if (TextUtils.isEmpty(Username)){
-            MainActivity.appPreference.showToast("Your username is required.");
+            MainActivity.appPreference.showToast("Login jest wymagany");
         } else if (TextUtils.isEmpty(Email)){
-            MainActivity.appPreference.showToast("Your email is required.");
+            MainActivity.appPreference.showToast("Email jest wymagany");
         } else if (!Patterns.EMAIL_ADDRESS.matcher(Email).matches()) {
-            MainActivity.appPreference.showToast("Invalid email");
+            MainActivity.appPreference.showToast("Nieprawidłowy email");
         } else if (TextUtils.isEmpty(Password)){
-            MainActivity.appPreference.showToast("Password required");
+            MainActivity.appPreference.showToast("Hasło jest wymagane");
         } else if (Password.length() < 6){
-            MainActivity.appPreference.showToast("Create a password at least 6 characters long.");
+            MainActivity.appPreference.showToast("Hasło musi zawierać conajmniej 6 znaków");
         }
         else {
 
